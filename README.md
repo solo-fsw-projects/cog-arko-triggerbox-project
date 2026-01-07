@@ -1,4 +1,4 @@
-# Requirments
+# Requirements
 
 Trigger box: something that generates intermittent TTL pulses (say every minute) to help synchronize the clocks of our various tools
 1.	Box to LED light flash for Muse 
