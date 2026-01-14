@@ -8,3 +8,10 @@ Trigger box: something that generates intermittent TTL pulses (say every minute)
 i.	https://docs.inivation.com/hardware/hardware-advanced-usage/external-camera-sync.html
 [The INPUT_SIGNAL port can be configured to detect rising edges, falling edges and pulses originating from another camera or electronic system, and when it detects such an occurence, a special data point is inserted into the data stream coming from the iniVation camera, with a very precise timestamp, allowing data from the camera to be put in relation with events happening externally.]
 ii.	The pin lay out is also in the link above - our camera is DVXplorer 
+
+
+# Arduino ide
+Add board package to ide. https://adafruit.github.io/arduino-board-index/package_adafruit_index.json
+Source: https://learn.adafruit.com/adafruit-feather-32u4-basic-proto/arduino-ide-setup
+
+
