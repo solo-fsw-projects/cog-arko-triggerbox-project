@@ -1,22 +1,24 @@
-# Requirements
-
-Trigger box: something that generates intermittent TTL pulses (say every minute) to help synchronize the clocks of our various tools
-1.	Box to LED light flash for Muse 
-2.	Box to BNC  - for brain products 
-3.	Box to Audio - for brain products [3-pin 2.5 mm phone jack; TTL (LVTTL) signals, 0 to +5 V (+ 3.3 V); active low]
-4.	Box to DVXplorer  
-i.	https://docs.inivation.com/hardware/hardware-advanced-usage/external-camera-sync.html
-[The INPUT_SIGNAL port can be configured to detect rising edges, falling edges and pulses originating from another camera or electronic system, and when it detects such an occurence, a special data point is inserted into the data stream coming from the iniVation camera, with a very precise timestamp, allowing data from the camera to be put in relation with events happening externally.]
-ii.	The pin lay out is also in the link above - our camera is DVXplorer 
+# Description
+The pulse generator is designed to synchronize different devices in the Codelab.
+Synchronization is based on a simple principle: all devices receive a pulse every 60 seconds.
 
 # Hardware description
-Hardware is based on the Adafruit Feather 32u4 operating add 3.3V.<br />
-Battery power operated with buildin charger.<br />
-Step up convertor 3.3V to 5V.<br />
-Buffered 3.3V and 5V output's for pulse.
+The device currently provides ports for Brain Products (3 ports), DVXplorer (1 port), Muse (2 ports), and Spare (2 ports).
+Different voltage levels (3.3V or 5V) are supported. For the Spare ports, the voltage can be configured by placing the appropriate resistors on the PCB.
+The device is powered by an internal rechargeable Li-ion battery.
 
-# Arduino ide
-Add [board package](https://adafruit.github.io/arduino-board-index/package_adafruit_index.json) to the arduino ide.<br />
-Source: [Adafruit](https://learn.adafruit.com/adafruit-feather-32u4-basic-proto/arduino-ide-setup)
+# Operation
+After powering up, the device sends three pulses to indicate startup.
+A manual pulse can be triggered by pressing the button; this generates two pulses.
+Every 60 seconds, a synchronization pulse is sent automatically.
+It is also possible to send 5 to 9 pulses via the serial port for special events.
 
+# Serial events
+Serial communication requires an Arduino driver. On modern Windows systems, this driver is usually installed automatically.
+The serial port must be opened with the following settings: 9600 baud, 8 data bits, no parity, 1 stop bit (9600, 8N1).
+Send ASCII characters 5, 6, 7, 8, or 9 to generate the corresponding number of pulses.
+
+# Pulse timing
+Each pulse has a width of 100 ms.
+If multiple pulses are sent, the interval between pulses is 150 ms.
 
