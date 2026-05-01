@@ -24,13 +24,13 @@ const String Version;
 const String Serialno;
 const String HwVer;
 unsigned long time_now = 0;
-unsigned int PULSE_INTERVAL = 10000;  //ms
+unsigned int PULSE_INTERVAL = 60*1000;  //ms
 
 //Instance
 ButtonDebounce button(MANUAL_PULSE_BUTTON, 10);
 
 void setup() {
-  //writeStringToEEPROM(10, "S12345");  //Use ones to program te serial number in the eeprom of the device
+  writeStringToEEPROM(10, "S02037");  //Use ones to program te serial number in the eeprom of the device
   //writeStringToEEPROM(20, "HW1");     //Use ones to program the hardware version in the eeprom of the device
   pinMode(LED_PULSE, OUTPUT);
   pinMode(ENABLE_STEPUP, OUTPUT);
