@@ -1,3 +1,5 @@
+![Pulsgenerator](Documentation/PulsGenerator.jpg)
+
 ## Description
 The pulse generator is designed to synchronize different devices in the Codelab.<br>
 Synchronization is based on a simple principle: all devices receive a pulse every 60 seconds.
