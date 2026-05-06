@@ -14,9 +14,9 @@ Add link https://adafruit.github.io/arduino-board-index/package_adafruit_index.j
 //define
 #define MANUAL_PULSE_BUTTON 4  //PD4
 #define LED_PULSE 30           //PD5
-#define ENABLE_STEPUP 12       //PD6
-#define ENABLE_BUFFER 6        //PD7
-#define V_BAT A5               //ADC0
+#define ENABLE_STEPUP 12       //PD6  3.3V to 5V setup regulator enable
+#define ENABLE_BUFFER 6        //PD7  Enable buffers, Note Inverted logic LOW=on, HIGH=off
+#define V_BAT A5               //ADC0 It doesn't make much sense to measure battery voltage when connected to pc over usb (it's always charging then and will not give Vbat therefore), but it's implemented
 
 
 //Globals
@@ -42,13 +42,13 @@ void setup() {
   Serial.begin(9600);  // opens serial port, sets data rate to 9600 bps
   Serialno = readStringFromEEPROM(10);
   HwVer = readStringFromEEPROM(20);
-  Version = String(HwVer + ":" + SwVer);  // Set HW version always
-  button.setCallback(buttonChanged);      //callback switch for marker sending
+  Version = String(HwVer + ":" + SwVer);  //Set HW version always
+  button.setCallback(buttonChanged);      //Callback sub switch for marker sending
   delay(2000);
-  digitalWrite(ENABLE_STEPUP, HIGH);
-  digitalWrite(ENABLE_BUFFER,LOW); //Inverted LOW=on, HIGH=off
-  delay(2000);
-  sendPulses(3);  // 3 pulses indicating start up of this device
+  digitalWrite(ENABLE_STEPUP, HIGH);      //Enable 5V stepup regulator
+  digitalWrite(ENABLE_BUFFER,LOW);        //Inverted LOW=on, HIGH=off
+  delay(2000);                            //Wait a moment until 5V stable
+  sendPulses(3);                          //3 pulses indicating start up of this device
 }
 
 
