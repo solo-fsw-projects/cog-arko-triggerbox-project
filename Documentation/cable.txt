@@ -1,0 +1,6 @@
+Mouser:
+798-HR10A-7P-4S73	HR10A-7P-4S Plug
+798-HR10A-7P-4P73	HR10A-7P-4P Male
+
+Conrad:
+486469 - 62             Kabeltronik LiYY Stuurstroomkabel 4 x 0.14 mm² Grijs 10401400 per meter
