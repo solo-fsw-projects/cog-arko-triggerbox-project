@@ -1,14 +1,15 @@
 /*
 Puls Generato Arko Ghosh Codelab for HW version 1
 Adafruit Feather 32u4 @ 8Mhz
-No need to disable the TXLED must in the Feather, already done by Adafruit
+No need to disable the TXLED in the Feather, already done by Adafruit
+Add link https://adafruit.github.io/arduino-board-index/package_adafruit_index.json to boardmanager in preferences to install correct board
 
- 20260420  1.0 Initial release
+20260420  1.0 Initial release
 
 */
 
 #include <EEPROM.h>
-#include <ButtonDebounce.h>
+#include <ButtonDebounce.h> //https://github.com/maykon/ButtonDebounce
 
 //define
 #define MANUAL_PULSE_BUTTON 4  //PD4
@@ -30,15 +31,15 @@ unsigned int PULSE_INTERVAL = 60*1000;  //ms
 ButtonDebounce button(MANUAL_PULSE_BUTTON, 10);
 
 void setup() {
-  writeStringToEEPROM(10, "S02037");  //Use ones to program te serial number in the eeprom of the device
+  //writeStringToEEPROM(10, "S02037");  //Use ones to program te serial number in the eeprom of the device
   //writeStringToEEPROM(20, "HW1");     //Use ones to program the hardware version in the eeprom of the device
   pinMode(LED_PULSE, OUTPUT);
   pinMode(ENABLE_STEPUP, OUTPUT);
   pinMode(ENABLE_BUFFER, OUTPUT);
 
-  DDRB = 0xFF;  //PortD all pins output
+  DDRB = 0xFF;  //PortB all pins output
   PORTB = 0x00;
-  Serial.begin(9600);  // opens serial port, sets data rate to 115200 bps
+  Serial.begin(9600);  // opens serial port, sets data rate to 9600 bps
   Serialno = readStringFromEEPROM(10);
   HwVer = readStringFromEEPROM(20);
   Version = String(HwVer + ":" + SwVer);  // Set HW version always
